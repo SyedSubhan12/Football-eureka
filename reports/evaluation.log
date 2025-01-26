@@ -1,0 +1,26 @@
+2025-01-26 00:12:56,749 - INFO - Loading dataset from D:/Football_Match_Outcome_Prediction/data/preprocessed_match.csv
+2025-01-26 00:12:57,177 - ERROR - Target column 'overall_rating' not found in the dataset.
+2025-01-26 00:13:39,725 - INFO - Loading dataset from D:/Football_Match_Outcome_Prediction/data/preprocessed_match.csv
+2025-01-26 00:13:40,115 - INFO - Splitting data into train and test sets.
+2025-01-26 00:13:41,263 - INFO - Features: ['potential', 'crossing', 'finishing', 'short_passing', 'dribbling', 'ball_control', 'acceleration', 'sprint_speed', 'stamina']
+2025-01-26 00:13:41,460 - INFO - Loaded pre-trained model for Linear Regression from D:/Football_Match_Outcome_Prediction/models/Linear.pkl
+2025-01-26 00:13:41,470 - INFO - Loaded pre-trained model for Logistic Regression from D:/Football_Match_Outcome_Prediction/models/logistic.pkl
+2025-01-26 00:13:41,564 - INFO - Loaded pre-trained model for Random Forest from D:/Football_Match_Outcome_Prediction/models/rf.pkl
+2025-01-26 00:13:41,928 - INFO - Loaded pre-trained model for XGBoost from D:/Football_Match_Outcome_Prediction/models/xgb.pkl
+2025-01-26 00:13:41,928 - INFO - Loaded pre-trained model for SVM from D:/Football_Match_Outcome_Prediction/models/svr.pkl
+2025-01-26 00:13:41,928 - INFO - Evaluating Linear Regression.
+2025-01-26 00:13:42,126 - INFO - Linear Regression - MSE: 4493.363652248577, MAE: 66.80637710122866, R2: -25968.859566840725
+2025-01-26 00:13:48,500 - INFO - Linear Regression evaluation plot saved to plots/Linear Regression_predictions_vs_actual.png
+2025-01-26 00:13:48,504 - INFO - Evaluating Logistic Regression.
+2025-01-26 00:13:48,570 - INFO - Logistic Regression - MSE: 0.14854875529948908, MAE: 0.14854875529948908, R2: 0.14144711790104136
+2025-01-26 00:13:49,442 - INFO - Logistic Regression evaluation plot saved to plots/Logistic Regression_predictions_vs_actual.png
+2025-01-26 00:13:49,445 - INFO - Evaluating Random Forest.
+2025-01-26 00:13:50,020 - INFO - Random Forest - MSE: 4493.076844077189, MAE: 66.80371798089315, R2: -25967.201929375788
+2025-01-26 00:13:51,421 - INFO - Random Forest evaluation plot saved to plots/Random Forest_predictions_vs_actual.png
+2025-01-26 00:13:51,423 - INFO - Evaluating XGBoost.
+2025-01-26 00:13:51,559 - INFO - XGBoost - MSE: 4497.25927734375, MAE: 66.78352355957031, R2: -25991.37890625
+2025-01-26 00:13:52,089 - INFO - XGBoost evaluation plot saved to plots/XGBoost_predictions_vs_actual.png
+2025-01-26 00:13:52,091 - INFO - Evaluating SVM.
+2025-01-26 00:13:52,139 - INFO - SVM - MSE: 4554.449796322113, MAE: 67.26430681825815, R2: -26321.913249080684
+2025-01-26 00:13:52,927 - INFO - SVM evaluation plot saved to plots/SVM_predictions_vs_actual.png
+2025-01-26 00:13:52,928 - INFO - Evaluation completed. Report saved.

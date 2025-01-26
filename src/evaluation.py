@@ -4,7 +4,7 @@ import pandas as pd
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 import matplotlib.pyplot as plt
 import seaborn as sns
-from utils import train_logistic_regression, train_random_forest, train_xgboost, train_svm
+import pickle
 
 # Set up logging
 logging.basicConfig(
@@ -77,7 +77,7 @@ if __name__ == "__main__":
     logging.info(f"Loading dataset from {data_path}")
     df = pd.read_csv(data_path)
 
-    target_column = "overall_rating"
+    target_column = "score"
 
     if target_column not in df.columns:
         logging.error(f"Target column '{target_column}' not found in the dataset.")
@@ -88,14 +88,25 @@ if __name__ == "__main__":
     from utils import split_data
     X_train, X_test, y_train, y_test = split_data(df, target_column)
 
-    # Train and evaluate models
-    models = {
-        "Logistic Regression": train_logistic_regression(X_train, y_train),
-        "Random Forest": train_random_forest(X_train, y_train),
-        "XGBoost": train_xgboost(X_train, y_train),
-        "SVM": train_svm(X_train, y_train)
+    # Load pre-trained models
+    models = {}
+    model_paths = {
+        "Linear Regression" : "D:/Football_Match_Outcome_Prediction/models/Linear.pkl",
+        "Logistic Regression": "D:/Football_Match_Outcome_Prediction/models/logistic.pkl",
+        "Random Forest": "D:/Football_Match_Outcome_Prediction/models/rf.pkl",
+        "XGBoost": "D:/Football_Match_Outcome_Prediction/models/xgb.pkl",
+        "SVM": "D:/Football_Match_Outcome_Prediction/models/svr.pkl"
     }
 
+    for model_name, model_path in model_paths.items():
+        try:
+            with open(model_path, 'rb') as f:
+                models[model_name] = pickle.load(f)
+            logging.info(f"Loaded pre-trained model for {model_name} from {model_path}")
+        except Exception as e:
+            logging.error(f"Error loading model for {model_name}: {e}")
+
+    # Evaluate pre-trained models
     for model_name, model in models.items():
         logging.info(f"Evaluating {model_name}.")
         evaluate_regression_model(model, X_test, y_test, model_name, report_file)

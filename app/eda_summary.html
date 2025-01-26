@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDA Results</title>
+    <!-- Import Tailwind CSS -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-white via-green-50 to-green-100 min-h-screen">
+
+    <div class="container mx-auto p-8 bg-white rounded-lg shadow-lg">
+        <h1 class="text-4xl font-extrabold text-center mb-10 text-green-700">EDA Results Summary</h1>
+
+        <!-- Section 1: Correlation Table -->
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold text-green-600 mb-4">Key Factors Influencing Match Outcomes</h2>
+            <p class="mb-4 text-gray-700">The table below highlights the correlation coefficients of various features with match outcomes (score).</p>
+            <div class="overflow-x-auto">
+                <table class="min-w-full border-collapse border border-gray-300 text-center">
+                    <thead class="bg-green-200">
+                        <tr>
+                            <th class="border border-gray-300 px-4 py-2 font-semibold text-gray-800">Feature</th>
+                            <th class="border border-gray-300 px-4 py-2 font-semibold text-gray-800">Correlation with Score</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        <tr><td class="border px-4 py-2">Height</td><td class="border px-4 py-2">-0.068440</td></tr>
+                        <tr><td class="border px-4 py-2">Weight</td><td class="border px-4 py-2">-0.025690</td></tr>
+                        <tr><td class="border px-4 py-2">Away Team Goal</td><td class="border px-4 py-2">0.045145</td></tr>
+                        <tr><td class="border px-4 py-2">Home Team Goal</td><td class="border px-4 py-2">0.062373</td></tr>
+                        <tr><td class="border px-4 py-2">Potential</td><td class="border px-4 py-2">0.421273</td></tr>
+                        <tr><td class="border px-4 py-2">Crossing</td><td class="border px-4 py-2">0.503286</td></tr>
+                        <tr><td class="border px-4 py-2">Short Passing</td><td class="border px-4 py-2">0.612184</td></tr>
+                        <tr><td class="border px-4 py-2">Dribbling</td><td class="border px-4 py-2">0.584319</td></tr>
+                        <tr><td class="border px-4 py-2">Ball Control</td><td class="border px-4 py-2">0.656628</td></tr>
+                        <tr><td class="border px-4 py-2">Stamina</td><td class="border px-4 py-2">0.534877</td></tr>
+                        <tr><td class="border px-4 py-2 font-semibold text-green-600">Score</td><td class="border px-4 py-2 font-semibold text-green-600">1.000000</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 2: Seasonal Trends -->
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold text-green-600 mb-4">Seasonal Trends in Match Outcomes</h2>
+            <p class="text-gray-700 mb-4">Analysis revealed higher win rates for home teams during specific months and tournaments. League tournaments generally showed a higher number of goals compared to cup matches.</p>
+            <div class="flex justify-center">
+                <img src="../app/seasonal_trends.png" alt="Seasonal Trends" class="rounded-lg shadow-md hover:scale-105 transition transform duration-300">
+            </div>
+        </section>
+
+        <!-- Section 3: High-Performing Teams and Players -->
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold text-green-600 mb-4">Consistently High-Performing Teams and Players</h2>
+            <p class="text-gray-700 mb-4">Top players and teams were identified based on goals scored, assists, and defensive metrics. Defensive metrics like tackles and shots blocked highlighted strong team performances.</p>
+            <div class="flex justify-center">
+                <img src="../app/team_goals.png" alt="Top Performers" class="rounded-lg shadow-md hover:scale-105 transition transform duration-300">
+            </div>
+        </section>
+
+        <!-- Section 4: Anomalies in Data -->
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold text-green-600 mb-4">Anomalies in Match Data</h2>
+            <p class="text-gray-700 mb-4">Outliers in matches (e.g., unusually high scores) were analyzed, revealing that red cards or injuries often influenced these outcomes.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
+                    <h3 class="text-lg font-semibold text-green-600">SV Zulte-Waregem</h3>
+                    <p><strong>Player Name:</strong> Aaron Doran</p>
+                    <p><strong>Height:</strong> 170.18 cm</p>
+                    <p><strong>Weight:</strong> 163 lbs</p>
+                </div>
+                <!-- More cards here... -->
+            </div>
+        </section>
+
+        <!-- Section 5: Home vs Away Performance -->
+        <section>
+            <h2 class="text-2xl font-bold text-green-600 mb-4">Home vs Away Team Performance</h2>
+            <p class="text-gray-700 mb-4">Home teams showed statistically significant higher win rates and better performance metrics, such as possession and goals scored, compared to away teams.</p>
+            <div class="bg-green-100 p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-gray-800">T-test Analysis</h3>
+                <p><strong>T-statistic:</strong> 4.8865</p>
+                <p><strong>P-value:</strong> 1.321 x 10<sup>-6</sup></p>
+                <p class="mt-2">The analysis shows a statistically significant difference between home and away team performances.</p>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>

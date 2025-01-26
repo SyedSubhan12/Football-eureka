@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Evaluation Summary</title>
+    <!-- Import Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Custom CSS for better animations -->
+    <style>
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="container mx-auto px-6 py-10">
+        <h1 class="text-4xl font-bold text-center text-gray-800 mb-10">Model Evaluation Summary</h1>
+
+        <!-- Grid Container -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Linear Regression Card -->
+            <div class="card bg-white rounded-lg shadow-md p-6 text-center">
+                <h2 class="text-2xl font-semibold text-green-600 mb-4">Linear Regression</h2>
+                <p class="text-gray-700"><strong>Mean Squared Error:</strong> 4493.3637</p>
+                <p class="text-gray-700"><strong>Mean Absolute Error:</strong> 66.8064</p>
+                <p class="text-gray-700"><strong>R² Score:</strong> -25968.8596</p>
+            </div>
+
+            <!-- Logistic Regression Card -->
+            <div class="card bg-white rounded-lg shadow-md p-6 text-center">
+                <h2 class="text-2xl font-semibold text-blue-600 mb-4">Logistic Regression</h2>
+                <p class="text-gray-700"><strong>Mean Squared Error:</strong> 0.1485</p>
+                <p class="text-gray-700"><strong>Mean Absolute Error:</strong> 0.1485</p>
+                <p class="text-gray-700"><strong>R² Score:</strong> 0.1414</p>
+            </div>
+
+            <!-- Random Forest Card -->
+            <div class="card bg-white rounded-lg shadow-md p-6 text-center">
+                <h2 class="text-2xl font-semibold text-yellow-600 mb-4">Random Forest</h2>
+                <p class="text-gray-700"><strong>Mean Squared Error:</strong> 4493.0768</p>
+                <p class="text-gray-700"><strong>Mean Absolute Error:</strong> 66.8037</p>
+                <p class="text-gray-700"><strong>R² Score:</strong> -25967.2019</p>
+            </div>
+
+            <!-- XGBoost Card -->
+            <div class="card bg-white rounded-lg shadow-md p-6 text-center">
+                <h2 class="text-2xl font-semibold text-red-600 mb-4">XGBoost</h2>
+                <p class="text-gray-700"><strong>Mean Squared Error:</strong> 4497.2593</p>
+                <p class="text-gray-700"><strong>Mean Absolute Error:</strong> 66.7835</p>
+                <p class="text-gray-700"><strong>R² Score:</strong> -25991.3789</p>
+            </div>
+
+            <!-- SVM Card -->
+            <div class="card bg-white rounded-lg shadow-md p-6 text-center">
+                <h2 class="text-2xl font-semibold text-purple-600 mb-4">SVM</h2>
+                <p class="text-gray-700"><strong>Mean Squared Error:</strong> 4554.4498</p>
+                <p class="text-gray-700"><strong>Mean Absolute Error:</strong> 67.2643</p>
+                <p class="text-gray-700"><strong>R² Score:</strong> -26321.9132</p>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="D:/Football_Match_Outcome_Prediction/app/main.css">
+    <title>Football Match Outcome Prediction</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.2/css/hover-min.css">
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Header Section -->
+    <div class="relative">
+        <!-- Image (cropped from top) -->
+        <img class="h-55 w-full object-cover object-top" src="../app/pexels-jsalamanca-61143.jpg" alt="">
+
+        <!-- Overlay Content -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
+            <div class="bg-green-600/80 p-4 sm:p-6 lg:p-8 rounded-lg shadow-lg text-center">
+                <h1 class="text-2xl sm:text-3xl lg:text-4xl font-medium text-white mb-4">
+                    Football Match Outcome Prediction
+                </h1>
+                <p class="text-white text-sm sm:text-base lg:text-lg">
+                    This project leverages advanced machine learning models to predict the outcome of football matches
+                    based on historical data, team statistics, and other critical factors. Explore the results visually
+                    and interactively below!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div class="px-4 sm:px-6 lg:px-8 mt-8">
+        <!-- Interactive Buttons Section -->
+        <div class="text-center mb-6">
+            <!-- Explore Visualizations Button -->
+            <button
+                class="relative bg-blue-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg transition-all duration-300 hover:bg-blue-700 hvr-grow mb-4"
+                style="overflow: hidden;">
+                <span
+                    class="absolute inset-0 bg-blue-800 opacity-20 scale-0 rounded-full transition-transform duration-300 ease-out group-hover:scale-100"></span>
+                <span
+                    class="relative text-base sm:text-lg transition-transform duration-300 group-hover:tracking-widest">Explore Visualizations</span>
+            </button>
+
+            <!-- Eval Report Button -->
+            <button
+            onclick="window.location.href='../app/eda_summary.html';"
+                class="relative bg-green-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg transition-all duration-300 hover:bg-green-700 hvr-grow mx-2"
+                style="overflow: hidden;" 
+                >
+                <span
+                    class="absolute inset-0 bg-green-800 opacity-20 scale-0 rounded-full transition-transform duration-300 ease-out group-hover:scale-100"></span>
+                <span
+                    class="relative text-base sm:text-lg transition-transform duration-300 group-hover:tracking-widest">Eval Report</span>
+            </button>
+
+            <!-- Model Report Button -->
+            <button
+            onclick="window.location.href='../app/model.html';"
+                class="relative bg-purple-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg transition-all duration-300 hover:bg-purple-700 hvr-grow mx-2"
+                style="overflow: hidden; >
+                <span
+                    class="absolute inset-0 bg-purple-800 opacity-20 scale-0 rounded-full transition-transform duration-300 ease-out group-hover:scale-100"></span>
+                <span
+                    class="relative text-base sm:text-lg transition-transform duration-300 group-hover:tracking-widest">Model Report</span>
+            </button>
+        </div>
+
+        <!-- Grid Section -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <!-- Visualization Items -->
+            <div
+                class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300">
+                <h2 class="text-lg font-semibold text-center mb-4">Acceleration Distribution</h2>
+                <img src="../visualizations/acceleration_distribution.png" alt="Acceleration Distribution" class="w-full rounded-md">
+            </div>
+            <div
+                class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300">
+                <h2 class="text-lg font-semibold text-center mb-4">Ball Control Distribution</h2>
+                <img src="../visualizations/ball_control_distribution.png" alt="Ball Control Distribution" class="w-full rounded-md">
+            </div>
+            <div
+                class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300">
+                <h2 class="text-lg font-semibold text-center mb-4">Crossing Distribution</h2>
+                <img src="../visualizations/crossing_distribution.png" alt="Crossing Distribution" class="w-full rounded-md">
+            </div>
+            <div
+                class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300">
+                <h2 class="text-lg font-semibold text-center mb-4">Dribbling Distribution</h2>
+                <img src="../visualizations/dribbling_distribution.png" alt="Dribbling Distribution" class="w-full rounded-md">
+            </div>
+            <div
+                class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300">
+                <h2 class="text-lg font-semibold text-center mb-4">Finishing Distribution</h2>
+                <img src="../visualizations/finishing_distribution.png" alt="Finishing Distribution" class="w-full rounded-md">
+            </div>
+            <div
+                class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300">
+                <h2 class="text-lg font-semibold text-center mb-4">Overall Rating Distribution</h2>
+                <img src="../visualizations/overall_rating_distribution.png" alt="Overall Rating Distribution" class="w-full rounded-md">
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white text-center py-4 mt-8">
+        <p class="text-sm">
+            &copy; 2025 Football Match Outcome Prediction. All Rights Reserved.
+        </p>
+    </footer>
+
+</body>
+
+</html>

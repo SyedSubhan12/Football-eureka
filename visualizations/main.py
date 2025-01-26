@@ -173,7 +173,7 @@ def main(file_path, output_path):
 
 # Example usage
 file_path = 'D:/Football_Match_Outcome_Prediction/data/preprocessed_match.csv'  # Replace with your football dataset file path
-output_path = 'visualization'  # Replace with your desired output directory
+output_path = 'visualizations'  # Replace with your desired output directory
 
 if not os.path.exists(output_path):
     os.makedirs(output_path)

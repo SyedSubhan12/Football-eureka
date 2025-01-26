@@ -1,0 +1,25 @@
+
+Linear Regression Evaluation:
+Mean Squared Error: 4493.3637
+Mean Absolute Error: 66.8064
+R2 Score: -25968.8596
+
+Logistic Regression Evaluation:
+Mean Squared Error: 0.1485
+Mean Absolute Error: 0.1485
+R2 Score: 0.1414
+
+Random Forest Evaluation:
+Mean Squared Error: 4493.0768
+Mean Absolute Error: 66.8037
+R2 Score: -25967.2019
+
+XGBoost Evaluation:
+Mean Squared Error: 4497.2593
+Mean Absolute Error: 66.7835
+R2 Score: -25991.3789
+
+SVM Evaluation:
+Mean Squared Error: 4554.4498
+Mean Absolute Error: 67.2643
+R2 Score: -26321.9132

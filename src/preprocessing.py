@@ -82,6 +82,21 @@ def handle_outliers(df, columns):
         print(f"Error handling outliers: {e}")
         return df
 
+def categorize_result(score):
+    """
+    Categorizes a numerical column (e.g., overall_rating) into 'win', 'loss', or 'draw'.
+    """
+    try:
+        if score > 63.33:
+            return 2 # win
+        elif score > 31.33 and score <= 63.33:
+            return 1 # draw
+        else:
+            return 0 # loss
+    except Exception as e:
+        print(f"Error calculating range: {e}")
+        return None
+
 def save_data(df, filepath):
     """
     Saves the DataFrame to a CSV file.
@@ -99,31 +114,36 @@ if __name__ == "__main__":
 
     df = load_data(filepath)
 
-    # Select relevant features and target
-    relevant_features = ['potential', 'crossing', 'finishing', 'short_passing',
-                         'dribbling', 'ball_control', 'acceleration', 'sprint_speed', 'stamina']
-    target = 'overall_rating'
+    if df is not None:
+        # Select relevant features and target
+        relevant_features = ['potential', 'crossing', 'finishing', 'short_passing',
+                             'dribbling', 'ball_control', 'acceleration', 'sprint_speed', 'stamina']
+        target = 'overall_rating'
 
-    # Ensure selected columns exist in the DataFrame
-    relevant_features = [col for col in relevant_features if col in df.columns]
+        # Ensure selected columns exist in the DataFrame
+        relevant_features = [col for col in relevant_features if col in df.columns]
 
-    df = df[relevant_features + [target]]  # Include only relevant features and target
+        df = df[relevant_features + [target]]  # Include only relevant features and target
 
-    # Handle missing values
-    df = handle_missing_values(df, strategy='mean')
+        # Handle missing values
+        df = handle_missing_values(df, strategy='mean')
 
-    # Scale numerical features
-    numerical_columns = relevant_features  # Target column is excluded from scaling
-    df = scale_features(df, numerical_columns)
+        # Scale numerical features (excluding target)
+        numerical_columns = relevant_features  # Target column is excluded from scaling
+        df = scale_features(df, numerical_columns)
 
-    # Encode categorical features (if applicable)
-    categorical_columns = []  # Add any categorical columns here
-    df = encode_categorical(df, categorical_columns)
+        # Encode categorical features (if applicable)
+        categorical_columns = []  # Add any categorical columns here
+        df = encode_categorical(df, categorical_columns)
 
-    # Handle outliers
-    df = handle_outliers(df, numerical_columns)
+        # Handle outliers
+        df = handle_outliers(df, numerical_columns)
 
-    # Save preprocessed data
-    save_data(df, output_filepath)
+        # Categorize results based on 'overall_rating'
+        df['score'] = df['overall_rating'].apply(categorize_result)
+        df.drop('overall_rating', inplace=True, axis=1)  # Drop target column
 
-    print("Preprocessing complete.")
+        # Save preprocessed data
+        save_data(df, output_filepath)
+
+        print("Preprocessing complete.")

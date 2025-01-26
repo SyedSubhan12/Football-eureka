@@ -1,14 +1,17 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression, LogisticRegression
 from sklearn.ensemble import RandomForestRegressor
 from xgboost import XGBRegressor
-from sklearn.svm import SVR
+from sklearn.svm import LinearSVR
 import matplotlib.pyplot as plt
 import seaborn as sns
-import logging
+import joblib
+import pickle as pp
 import time
+import os
+import logging
 from concurrent.futures import ThreadPoolExecutor, TimeoutError
 
 # Configure logging
@@ -56,28 +59,37 @@ def train_xgboost(X_train, y_train):
 from sklearn.svm import SVR
 from sklearn.model_selection import GridSearchCV
 
-def train_svr(X_train, y_train):
-    """Trains a Support Vector Regressor (SVR) with a linear kernel using Grid Search for hyperparameter tuning."""
-    # Define SVR model with a linear kernel
-    svr = SVR(kernel='linear')
-    
-    # Define parameter grid for Grid Search
+def train_linear_svr(X_train, y_train):
+    """
+    Trains a Linear Support Vector Regressor (LinearSVR) using Grid Search for hyperparameter tuning.
+    """
+    linear_svr = LinearSVR(max_iter=10000)
     param_grid = {
-        'C': [0.1, 1, 10, 100],  # Regularization parameter
-        'epsilon': [0.1, 0.01, 0.001]  # Epsilon-insensitive loss function
+        'C': [0.1, 1, 10],       
+        'epsilon': [0.1, 0.01]   
     }
+    grid_search = GridSearchCV(
+        estimator=linear_svr,
+        param_grid=param_grid,
+        cv=3,          
+        n_jobs=2,       
+        verbose=3       
+    )
     
-    # Initialize Grid Search
-    grid_search = GridSearchCV(estimator=svr, param_grid=param_grid, cv=5, n_jobs=-1)
+    # Set parallel backend
+    logging.info("Starting Grid Search with LinearSVR...")
+    with joblib.parallel_backend('loky'):  
+        grid_search.fit(X_train, y_train)
+    logging.info("Grid Search completed.")
     
-    # Fit Grid Search to the training data
-    grid_search.fit(X_train, y_train)
-    
-    # Get the best estimator
-    best_model = grid_search.best_estimator_
-    
-    return best_model
+    return grid_search.best_estimator_
 
+# New function for Logistic Regression
+def train_logistic_regression(X_train, y_train):
+    """Trains a Logistic Regression model."""
+    model = LogisticRegression(max_iter=10000)
+    model.fit(X_train, y_train)
+    return model
 
 def evaluate_model(model, X_test, y_test):
     """
@@ -115,7 +127,7 @@ def train_model_with_timeout(model_func, X_train, y_train, timeout=300):
 
 # Example workflow
 if __name__ == "__main__":
-    filepath = "D:/Football_Match_Outcome_Prediction/data/preprocessed_match.csv"
+    filepath = "/content/preprocessed_match.csv"
     target_column = "overall_rating"
 
     logging.info(f"Loading dataset from {filepath}")
@@ -127,29 +139,49 @@ if __name__ == "__main__":
 
     # Train models with timeout handling
     logging.info("Training Linear Regression model.")
-    linear_model = train_model_with_timeout(train_linear_regression, X_train, y_train)
-    if linear_model:
+    Linear_model = train_model_with_timeout(train_linear_regression, X_train, y_train)
+    if Linear_model:
         logging.info("Linear Regression model trained.")
+        with open("Linear.pkl", "wb") as f:
+          pp.dump(Linear_model, f)
+        logging.info("Model trained and saved")
 
     logging.info("Training Random Forest Regressor.")
     rf_model = train_model_with_timeout(train_random_forest, X_train, y_train)
     if rf_model:
         logging.info("Random Forest model trained.")
+        with open("rf.pkl", "wb") as f:
+          pp.dump(rf_model, f)
+        logging.info("Model trained and saved")
 
     logging.info("Training XGBoost Regressor.")
     xgb_model = train_model_with_timeout(train_xgboost, X_train, y_train)
     if xgb_model:
         logging.info("XGBoost model trained.")
+        with open("xgb.pkl", "wb") as f:
+          pp.dump(xgb_model, f)
+        logging.info("Model trained and saved")
 
     logging.info("Training SVR model.")
     svr_model = train_model_with_timeout(train_svr, X_train, y_train)
     if svr_model:
         logging.info("SVR model trained.")
+        with open("svr.pkl", "wb") as f:
+          pp.dump(svr_model, f)
+        logging.info("Model trained and saved")
+
+    logging.info("Training Logistic Regression model.")
+    logreg_model = train_model_with_timeout(train_logistic_regression, X_train, y_train)
+    if logreg_model:
+        logging.info("Logistic Regression model trained.")
+        with open("logreg.pkl", "wb") as f:
+          pp.dump(logreg_model, f)
+        logging.info("Model trained and saved")
 
     # Evaluate models
-    if linear_model:
+    if Linear_model:
         logging.info("Evaluating Linear Regression model.")
-        evaluate_model(linear_model, X_test, y_test)
+        evaluate_model(Linear_model, X_test, y_test)
 
     if rf_model:
         logging.info("Evaluating Random Forest Regressor.")
@@ -162,3 +194,7 @@ if __name__ == "__main__":
     if svr_model:
         logging.info("Evaluating SVR model.")
         evaluate_model(svr_model, X_test, y_test)
+
+    if logreg_model:
+        logging.info("Evaluating Logistic Regression model.")
+        evaluate_model(logreg_model, X_test, y_test)
